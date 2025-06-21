@@ -8,7 +8,11 @@ public class CentralMonitoringService {
     public static void evaluate(SensorMeasurement measurement) {
 
         if (!measurement.isNormal()) {
-            String reason = measurement.getConfig().name+" exceeds " + measurement.getConfig().threshold + "°C";
+            String reason = String.format(
+                    "%s exceeds %.1f%s",
+                    measurement.getConfig().name,
+                    measurement.getConfig().threshold,
+                    measurement.getConfig().unitSign);
             System.err.println("[ALARM] " + measurement + " -> " + reason);
         } else {
             System.out.println("[CentralMonitoring] OK: " + measurement);

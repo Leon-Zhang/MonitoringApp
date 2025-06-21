@@ -4,7 +4,7 @@ package com.monitoring;
 import com.monitoring.model.SensorMeasurement;
 import com.monitoring.model.SensorConfig;
 import com.monitoring.utils.SensorParser;
-import com.monitoring.central.CentralMonitoringService;
+import com.monitoring.CentralMonitoringService;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -21,10 +21,10 @@ public class WarehouseService {
 
     private static void listenOnPort(int port) {
         try (DatagramSocket socket = new DatagramSocket(port)) {
-            byte[] buffer = new byte[1024];
+            var buffer = new byte[1024];
             System.out.println("[WarehouseService] Listening on port " + port);
             while (true) {
-                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+                var packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
                 String msg = new String(packet.getData(), 0, packet.getLength());
                 SensorMeasurement measurement = SensorParser.parse(msg, port);
