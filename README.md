@@ -61,6 +61,10 @@ echo -n "sensor_id=t1; value=36" | nc -u 127.0.0.1 3344
 # Simulate humidity sensor
 echo -n "sensor_id=h1; value=60" | nc -u 127.0.0.1 3355
 ```
+Or execute maven test cases:
+```bash
+mvn test
+```
 
 ## ⚙️ Requirements
 
