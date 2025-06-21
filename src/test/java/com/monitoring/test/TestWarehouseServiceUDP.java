@@ -6,6 +6,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import static com.monitoring.model.SensorConfig.*;
+
 public class TestWarehouseServiceUDP {
 
     private void sendUdpPacket(String message, int port) throws Exception {
@@ -28,21 +30,21 @@ public class TestWarehouseServiceUDP {
     @Test
     public void testSendTemperatureSensorData() throws Exception {
         String testMessage = "sensor_id=t1; value=35";
-        sendUdpPacket(testMessage, 3344); // Temperature port
+        sendUdpPacket(testMessage, TEMPERATURE_PORT); // Temperature port
         Thread.sleep(200); // Give time for the server to process (if running)
     }
 
     @Test
     public void testSendAbnormalTemperatureSensorData() throws Exception {
         String testMessage = "sensor_id=t1; value=37";
-        sendUdpPacket(testMessage, 3344); // Temperature port
+        sendUdpPacket(testMessage, TEMPERATURE_PORT); // Temperature port
         Thread.sleep(200); // Give time for the server to process (if running)
     }
 
     @Test
     public void testSendAbnormalHumiditySensorData() throws Exception {
         String testMessage = "sensor_id=h1; value=60";
-        sendUdpPacket(testMessage, 3355); // Humidity port
+        sendUdpPacket(testMessage, HUMIDITY_PORT); // Humidity port
         Thread.sleep(200); // Give time for the server to process (if running)
     }
 }

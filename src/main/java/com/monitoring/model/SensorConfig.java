@@ -18,19 +18,16 @@ public class SensorConfig {
     }
 
     public static final int NUM_ACTIVE_SENESOR = 2;
-    public static final int Humidity_Port = 3355;
-    public static final int Temperature_Port = 3344;
-    public static final SensorConfig Humidity = new SensorConfig( Humidity_Port, "Humidity",50.0,"%");
-    public static final SensorConfig Temperature = new SensorConfig( Temperature_Port, "Temperature" , 35.0, "°C");
+    public static final int HUMIDITY_PORT = 3355;
+    public static final int TEMPERATURE_PORT = 3344;
+    public static final SensorConfig Humidity = new SensorConfig( HUMIDITY_PORT, "Humidity",50.0,"%");
+    public static final SensorConfig Temperature = new SensorConfig( TEMPERATURE_PORT, "Temperature" , 35.0, "°C");
 
     public static SensorConfig getConfigFromPort(int port) {
-        switch(port){
-            case Humidity_Port:
-            return Humidity;
-            case Temperature_Port:
-            return Temperature;
-            default:
-            return null;
-        }
+        return switch(port){
+            case HUMIDITY_PORT -> Humidity;
+            case TEMPERATURE_PORT -> Temperature;
+            default -> null;
+        };
     }
 }
